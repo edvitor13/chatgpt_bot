@@ -35,7 +35,7 @@ class Bot(discord.Client):
             return None
         
         content = re.sub(
-            '/gpt', '', message, count=1, flags=re.IGNORECASE)
+            '/gpt', '', content, count=1, flags=re.IGNORECASE)
 
         if not content.strip():
             return None
@@ -47,7 +47,7 @@ class Bot(discord.Client):
             pass
 
         response = await asyncio.get_running_loop()\
-            .run_in_executor(None, _ask_gpt, message)
+            .run_in_executor(None, _ask_gpt, content)
 
         await message.channel.send(response)
         await message.clear_reactions()
