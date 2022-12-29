@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      CHATGPT_API_KEY: ${CHATGPT_API_KEY}
+      CHATGPT_BOT_TOKEN: ${CHATGPT_BOT_TOKEN}
+    volumes:
+      - ./chat_gpt.db:/app/chatgpt_bot/chat_gpt.db
+    command: python main.py
