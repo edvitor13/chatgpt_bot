@@ -101,5 +101,8 @@ class Bot(discord.Client):
             finally:
                 return None
 
+        if type(chat_response) is str and len(chat_response) > 2000:
+            chat_response = f"{chat_response[:1995]}\n..."
+
         await message.channel.send(chat_response)
         await message.clear_reactions()
